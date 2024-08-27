@@ -40,6 +40,7 @@ let listData =[
   console.log(listData)
   // создание элементов
   const app = document.getElementById('app')
+  addForm = document.getElementById('add-form')
   const table = document.createElement('table')
   const tableHead = document.createElement('thead')
   const tableBody = document.createElement('tbody')
@@ -49,6 +50,8 @@ let listData =[
   tableHeadThAge = document.createElement('th'),
   tableHeadThBirthYear = document.createElement('th'),
   tableHeadThHobby = document.createElement('th');
+
+  table.classList.add('table', 'table-dark')
 
 
   tableHeadThFIO.textContent = 'ФИО'
@@ -70,14 +73,16 @@ let listData =[
   // рендер
 
 // Подготовка 
-
-
-
-  
+const copyListData = [...listData]
+for (const oneUser of copyListData) {
+  oneUser.fio = oneUser.name + ' ' + oneUser.surename + ' ' + oneUser.lastname
+  oneUser.birthYear = 2024 - oneUser.age
+}
+  console.log(copyListData);
 
 // Отрисовка
 
-for (const oneUser of listData) {
+for (const oneUser of copyListData) {
   const userTr = document.createElement('tr'),
   userFIO = document.createElement('th'),
   userAge = document.createElement('th'),
@@ -85,9 +90,9 @@ for (const oneUser of listData) {
   userHobby = document.createElement('th');
 
 
-  userFIO.textContent = oneUser.name
+  userFIO.textContent = oneUser.fio
   userAge.textContent = oneUser.age
-  userBirthYear.textContent = 'Год'
+  userBirthYear.textContent = oneUser.birthYear
   userHobby.textContent = oneUser.hobby
   
   userTr.append(userFIO)
@@ -98,4 +103,12 @@ for (const oneUser of listData) {
   tableBody.append(userTr)
 }
 
- 
+
+// добавление
+
+
+ addForm.addEventListener('submit', function(event) {
+  event.preventDefault()
+
+  
+ })
