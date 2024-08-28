@@ -1,7 +1,7 @@
 // база данных
 let listData = [
   {
-    name: 'Олег',
+    name: 'Виктор',
     surename: 'Иванович',
     lastname: 'Мостин',
     age: 21,
@@ -108,6 +108,12 @@ function createUserTr(oneUser) {
   return userTr
 }
 
+// Фильтрация
+function filter(arr, prop, value) {
+  return arr.filter(function(oneUser) {
+     if(oneUser[prop].includes(value.trim())) return true
+     })
+}
 
 // рендер
 function rander(arrData) {
@@ -128,10 +134,21 @@ function rander(arrData) {
   })
 
 // Фильтрация
-copyListData = copyListData.filter(function(oneUser) {
-if(oneUser.name == "Олег") return true
-})
+if (fioFilterInp.value.trim() !== "") {
+copyListData = filter(copyListData, 'fio', fioFilterInp.value)
+}
 
+if (hobbyFilterInp.value.trim() !== "") {
+  copyListData = filter(copyListData, 'hobby', hobbyFilterInp.value)
+  }
+// copyListData = copyListData.filter(function(oneUser) {
+// if(oneUser.fio.includes(fioFilterInp.value.trim())) return true
+// })
+
+// if (hobbyFilterInp.value.trim() !== "")
+//   copyListData = copyListData.filter(function(oneUser) {
+//   if(oneUser.hobby.includes(hobbyFilterInp.value.trim())) return true
+//   })
 
   // Отрисовка
   for (const oneUser of copyListData) {
